@@ -12,8 +12,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Docker compose
-        run: docker-compose up -d
+      - name: Docker build
+        run: docker build -f docker/ci-dockerfile -t juno_local_ci ./setup_and_run.sh juno16g2rahf5846rxzp3fwlswy08fz8ccuwk03k57y
+      - name: Docker run
+        run: docker run --rm -d --name juno_node_1 -p 1317:1317 -p 26656:26656 -p 26657:26657 ghcr.io/cosmoscontracts/juno:juno_local_ci ./run_junod.sh
       - name: Sleep
         uses: jakejarvis/wait-action@master
         with:
