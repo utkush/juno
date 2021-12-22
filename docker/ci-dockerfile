@@ -1,0 +1,4 @@
+FROM ghcr.io/cosmoscontracts/juno:pr-latest
+
+COPY docker/app.toml /root/.juno/config/app.toml
+COPY docker/config.toml /root/.juno/config/app.toml
